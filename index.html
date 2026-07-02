@@ -3,10 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>Dico Fathatul Rizki — Social Media & Data</title>
-       <!-- Favicon -->
+    <title data-i18n="page_title">Dico Fathatul Rizki — Social Media & Data</title>
+    <meta name="description" content="Portfolio of Dico Fathatul Rizki — Social Media Specialist & Data Annotator based in Yogyakarta, Indonesia." data-i18n="meta_description">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCI+CiAgPHJlY3Qgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiIHJ4PSIyMCIgZmlsbD0iIzBBMEEwQSIvPgogIDx0ZXh0IHg9IjUwIiB5PSI2OCIgZm9udC1mYW1pbHk9IlNwYWNlIEdyb3Rlc2ssIHN5c3RlbS11aSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSI1MiIgZm9udC13ZWlnaHQ9IjcwMCIgbGV0dGVyLXNwYWNpbmc9Ii0yIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjQzI3QjNDIj5EWjwvdGV4dD4KPC9zdmc+" />
     <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCI+CiAgPHJlY3Qgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiIHJ4PSIyMCIgZmlsbD0iIzBBMEEwQSIvPgogIDx0ZXh0IHg9IjUwIiB5PSI2OCIgZm9udC1mYW1pbHk9IlNwYWNlIEdyb3Rlc2ssIHN5c3RlbS11aSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSI1MiIgZm9udC13ZWlnaHQ9IjcwMCIgbGV0dGVyLXNwYWNpbmc9Ii0yIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjQzI3QjNDIj5EWjwvdGV4dD4KPC9zdmc+" />
+    <meta property="og:url" content="https://dicorzki.com/">
+    <meta property="og:image" content="https://dicorzki.com/og-image.png">
+    <meta name="twitter:url" content="https://dicorzki.com/">
+    <meta name="twitter:image" content="https://dicorzki.com/og-image.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -129,6 +133,13 @@
         .hamburger.active span:nth-child(1) { top: 50%; transform: translateY(-50%) rotate(45deg); }
         .hamburger.active span:nth-child(2) { opacity: 0; transform: translateX(-10px); }
         .hamburger.active span:nth-child(3) { bottom: 50%; transform: translateY(50%) rotate(-45deg); }
+        /* Language Toggle */
+        .lang-toggle { font-family: 'Space Grotesk', sans-serif; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; display: flex; align-items: center; gap: 0.4rem; cursor: pointer; position: relative; z-index: 102; }
+        .lang-toggle span { opacity: 0.5; transition: opacity 0.3s; }
+        .lang-toggle span.active { opacity: 1; color: #C27B3C; }
+        .lang-toggle .lang-divider { width: 1px; height: 0.8rem; background: currentColor; opacity: 0.3; }
+        .lang-fade { transition: opacity 0.3s ease; }
+        .lang-fade.switching { opacity: 0; }
         @media (max-width: 768px) { .experience-card { position: relative !important; top: 0 !important; } .hero-title { letter-spacing: -0.03em; } .ambient-glow { display: none; } .section-num { font-size: 4rem; } }
         @media (max-width: 480px) { .hero-title { font-size: clamp(2.8rem, 14vw, 4rem); letter-spacing: -0.02em; } .section-num { font-size: 3.5rem; } .contact-heading { font-size: clamp(2rem, 10vw, 3rem); } }
         @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } .reveal, .reveal-scale, .line-reveal-inner, .animated-rule { opacity: 1; transform: none; } .mesh-bg { animation: none; } }
@@ -141,6 +152,30 @@
         .footer-text { font-family: 'Space Grotesk', sans-serif; font-size: 0.75rem; letter-spacing: 0.04em; }
         .year-counter { font-family: 'Space Grotesk', sans-serif; font-variant-numeric: tabular-nums; }
     </style>
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://dicorzki.com/">
+    <meta property="og:title" content="Dico Fathatul Rizki — Social Media & Data">
+    <meta property="og:description" content="Portfolio of Dico Fathatul Rizki — Social Media Specialist & Data Annotator based in Yogyakarta, Indonesia.">
+    <meta property="og:image" content="https://dicorzki.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="DICORZKI - Social Media Specialist & Data Annotator">
+    <meta property="og:site_name" content="DICORZKI">
+    <meta property="og:locale" content="id_ID">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://dicorzki.com/">
+    <meta name="twitter:title" content="Dico Fathatul Rizki — Social Media & Data">
+    <meta name="twitter:description" content="Portfolio of Dico Fathatul Rizki — Social Media Specialist & Data Annotator based in Yogyakarta, Indonesia.">
+    <meta name="twitter:image" content="https://dicorzki.com/og-image.png">
+    <meta name="twitter:image:alt" content="DICORZKI - Social Media Specialist & Data Annotator">
+
+    <!-- Theme Color for Mobile Browsers -->
+    <meta name="theme-color" content="#C27B3C">
+    <meta name="msapplication-TileColor" content="#C27B3C">
+<base target="_blank">
 </head>
 <body class="transition-colors duration-700">
     <div class="ambient-glow" id="ambient-glow" aria-hidden="true"></div>
@@ -149,23 +184,28 @@
     <div class="noise-overlay" aria-hidden="true"></div>
     <div class="vignette" aria-hidden="true"></div>
     <div class="mobile-menu" id="mobile-menu">
-        <a href="#about" class="text-light-text dark:text-dark-text" onclick="toggleMenu()">Tentang</a>
-        <a href="#work" class="text-light-text dark:text-dark-text" onclick="toggleMenu()">Pengalaman</a>
-        <a href="#education" class="text-light-text dark:text-dark-text" onclick="toggleMenu()">Pendidikan</a>
-        <a href="#tools" class="text-light-text dark:text-dark-text" onclick="toggleMenu()">Alat</a>
-        <a href="#contact" class="text-light-text dark:text-dark-text" onclick="toggleMenu()">Kontak</a>
+        <a href="#about" class="text-light-text dark:text-dark-text" onclick="toggleMenu()" data-i18n="nav_about">Tentang</a>
+        <a href="#work" class="text-light-text dark:text-dark-text" onclick="toggleMenu()" data-i18n="nav_work">Pengalaman</a>
+        <a href="#education" class="text-light-text dark:text-dark-text" onclick="toggleMenu()" data-i18n="nav_education">Pendidikan</a>
+        <a href="#tools" class="text-light-text dark:text-dark-text" onclick="toggleMenu()" data-i18n="nav_tools">Alat</a>
+        <a href="#contact" class="text-light-text dark:text-dark-text" onclick="toggleMenu()" data-i18n="nav_contact">Kontak</a>
     </div>
     <header class="fixed top-0 w-full z-50 mix-blend-difference">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
             <a href="#" class="nav-logo text-sm text-white/90 hover:text-white transition-colors relative z-[102]">DICORZKI</a>
-            <div class="flex items-center gap-6 sm:gap-8">
+            <div class="flex items-center gap-5 sm:gap-8">
                 <nav class="hidden md:flex items-center gap-10">
-                    <a href="#about" class="label-text text-white/50 hover:text-white transition-colors link-line">Tentang</a>
-                    <a href="#work" class="label-text text-white/50 hover:text-white transition-colors link-line">Pengalaman</a>
-                    <a href="#education" class="label-text text-white/50 hover:text-white transition-colors link-line">Pendidikan</a>
-                    <a href="#tools" class="label-text text-white/50 hover:text-white transition-colors link-line">Alat</a>
-                    <a href="#contact" class="label-text text-white/50 hover:text-white transition-colors link-line">Kontak</a>
+                    <a href="#about" class="label-text text-white/50 hover:text-white transition-colors link-line" data-i18n="nav_about">Tentang</a>
+                    <a href="#work" class="label-text text-white/50 hover:text-white transition-colors link-line" data-i18n="nav_work">Pengalaman</a>
+                    <a href="#education" class="label-text text-white/50 hover:text-white transition-colors link-line" data-i18n="nav_education">Pendidikan</a>
+                    <a href="#tools" class="label-text text-white/50 hover:text-white transition-colors link-line" data-i18n="nav_tools">Alat</a>
+                    <a href="#contact" class="label-text text-white/50 hover:text-white transition-colors link-line" data-i18n="nav_contact">Kontak</a>
                 </nav>
+                <div class="lang-toggle text-white/70" id="lang-toggle" onclick="toggleLanguage()">
+                    <span id="lang-id" class="active">ID</span>
+                    <span class="lang-divider"></span>
+                    <span id="lang-en">EN</span>
+                </div>
                 <button id="theme-toggle" aria-label="Toggle Dark Mode" class="text-white/70 hover:text-white transition-colors p-2 relative z-[102]">
                     <i class="ph ph-moon text-lg dark:hidden block"></i>
                     <i class="ph ph-sun text-lg hidden dark:block"></i>
@@ -182,7 +222,7 @@
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end">
                     <div class="lg:col-span-8">
                         <p class="line-reveal mb-5 sm:mb-7">
-                            <span class="line-reveal-inner hero-subtitle text-light-muted dark:text-dark-muted">Social Media Specialist & Data Annotator</span>
+                            <span class="line-reveal-inner hero-subtitle text-light-muted dark:text-dark-muted" data-i18n="hero_subtitle">Social Media Specialist & Data Annotator</span>
                         </p>
                         <h1 class="hero-title text-light-text dark:text-dark-text mb-6 sm:mb-10">
                             <span class="line-reveal"><span class="line-reveal-inner">Dico</span></span>
@@ -191,19 +231,19 @@
                         </h1>
                     </div>
                     <div class="lg:col-span-4 lg:pb-10">
-                        <p class="reveal body-text text-light-muted dark:text-dark-muted max-w-sm text-balance">
+                        <p class="reveal body-text text-light-muted dark:text-dark-muted max-w-sm text-balance" data-i18n="hero_body">
                             Harmoni antara <span class="accent-italic text-accent">kreativitas visual</span> dan <span class="accent-italic text-accent">presisi data teknis</span>. Membangun narasi digital yang berarti.
                         </p>
                         <div class="reveal reveal-delay-2 mt-8 sm:mt-12 flex items-center gap-4">
                             <a href="#about" class="font-display inline-flex items-center gap-3 px-5 sm:px-7 py-3.5 bg-light-text text-light-bg dark:bg-dark-text dark:text-dark-bg rounded-full text-sm font-medium hover:scale-105 transition-transform duration-300">
-                                <span>Eksplorasi</span><i class="ph ph-arrow-down-right text-lg"></i>
+                                <span data-i18n="hero_cta">Eksplorasi</span><i class="ph ph-arrow-down-right text-lg"></i>
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="absolute bottom-8 sm:bottom-12 left-4 sm:left-6 lg:left-12 flex items-center gap-3 label-text text-light-muted dark:text-dark-muted">
-                <span class="w-8 sm:w-12 h-[1px] bg-current"></span><span class="scroll-hint">Scroll</span>
+                <span class="w-8 sm:w-12 h-[1px] bg-current"></span><span class="scroll-hint" data-i18n="scroll_hint">Scroll</span>
             </div>
         </section>
         <section id="about" class="min-h-screen flex items-center px-4 sm:px-6 py-20 sm:py-32">
@@ -212,20 +252,20 @@
                     <div class="lg:col-span-4">
                         <div class="reveal lg:sticky lg:top-32">
                             <span class="section-num font-display text-light-border dark:text-dark-border opacity-30 block">01</span>
-                            <p class="mt-3 sm:mt-5 label-text text-light-muted dark:text-dark-muted">Tentang</p>
+                            <p class="mt-3 sm:mt-5 label-text text-light-muted dark:text-dark-muted" data-i18n="about_heading">Tentang</p>
                         </div>
                     </div>
                     <div class="lg:col-span-8 space-y-10 sm:space-y-14">
-                        <p class="reveal body-large text-light-text dark:text-dark-text text-balance">
+                        <p class="reveal body-large text-light-text dark:text-dark-text text-balance" data-i18n="about_p1">
                             Saya percaya bahwa konten yang baik adalah <span class="font-display font-semibold text-accent">harmoni antara narasi manusiawi</span> dan <span class="font-display font-semibold text-accent">presisi data</span>.
                         </p>
                         <div class="reveal reveal-delay-1 w-16 sm:w-24 h-[1px] bg-accent"></div>
-                        <p class="reveal reveal-delay-2 body-text text-light-muted dark:text-dark-muted max-w-2xl text-balance">
+                        <p class="reveal reveal-delay-2 body-text text-light-muted dark:text-dark-muted max-w-2xl text-balance" data-i18n="about_p2">
                             Latar belakang Informatika memberi saya lensa teknis, sedangkan pengalaman di industri kreatif mengasah empati visual. 
                             Saya pernah mengelola konten untuk lima brand secara simultan di Migunani Creative, merancang strategi dari riset tren hingga eksekusi visual — fotografi, videografi, dan editing. 
                             Pengalaman sebelumnya di Brisia Graduation dan Amikom Business Park memperkuat kemampuan saya dalam manajemen komunikasi dan perencanaan jangka panjang.
                         </p>
-                        <p class="reveal reveal-delay-3 body-text text-light-muted dark:text-dark-muted max-w-2xl text-balance">
+                        <p class="reveal reveal-delay-3 body-text text-light-muted dark:text-dark-muted max-w-2xl text-balance" data-i18n="about_p3">
                             Sebagai Data Annotator, saya memproses data teknis untuk pemodelan machine learning. Berpengalaman dengan Python, 
                             TensorFlow, dan arsitektur seperti MobileNetV2 untuk computer vision tasks.
                         </p>
@@ -239,9 +279,9 @@
                 <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-14 sm:mb-24 gap-4">
                     <div>
                         <span class="reveal section-num font-display text-light-border dark:text-dark-border opacity-30 block">02</span>
-                        <h2 class="reveal reveal-delay-1 section-heading text-light-text dark:text-dark-text mt-3 sm:mt-4">Pengalaman</h2>
+                        <h2 class="reveal reveal-delay-1 section-heading text-light-text dark:text-dark-text mt-3 sm:mt-4" data-i18n="work_heading">Pengalaman</h2>
                     </div>
-                    <p class="reveal reveal-delay-2 label-text text-light-muted dark:text-dark-muted max-w-xs sm:text-right">Empat tahun di industri kreatif dan teknologi</p>
+                    <p class="reveal reveal-delay-2 label-text text-light-muted dark:text-dark-muted max-w-xs sm:text-right" data-i18n="work_subheading">Empat tahun di industri kreatif dan teknologi</p>
                 </div>
                 <div class="experience-stack space-y-6 sm:space-y-8">
                     <article class="experience-card reveal-scale bg-light-surface dark:bg-dark-surface border border-light-border dark:border-dark-border rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12">
@@ -249,41 +289,41 @@
                             <div class="md:col-span-3"><span class="label-text text-light-muted dark:text-dark-muted">2023 — 2024</span></div>
                             <div class="md:col-span-7">
                                 <h3 class="card-title text-light-text dark:text-dark-text mb-2">Migunani Creative</h3>
-                                <p class="card-meta text-accent mb-5 sm:mb-7">Social Media Content Creator</p>
-                                <p class="body-text text-light-muted dark:text-dark-muted max-w-xl">Mengelola 5 brand di Instagram dan TikTok secara simultan. Merancang Monthly Content Plan, menjalankan produksi kreatif mandiri (fotografi produk, videografi, editing video, desain carousel), dan membangun interaksi organik melalui manajemen komunitas dan kolom komentar.</p>
+                                <p class="card-meta text-accent mb-5 sm:mb-7" data-i18n="exp_migunani_role">Social Media Content Creator</p>
+                                <p class="body-text text-light-muted dark:text-dark-muted max-w-xl" data-i18n="exp_migunani_desc">Mengelola 5 brand di Instagram dan TikTok secara simultan. Merancang Monthly Content Plan, menjalankan produksi kreatif mandiri (fotografi produk, videografi, editing video, desain carousel), dan membangun interaksi organik melalui manajemen komunitas dan kolom komentar.</p>
                             </div>
                             <div class="md:col-span-2 flex md:justify-end"><div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-light-border dark:border-dark-border flex items-center justify-center"><i class="ph ph-bezier-curve text-lg sm:text-xl text-accent"></i></div></div>
                         </div>
                     </article>
                     <article class="experience-card reveal-scale bg-light-surface dark:bg-dark-surface border border-light-border dark:border-dark-border rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12">
                         <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-start">
-                            <div class="md:col-span-3"><span class="label-text text-light-muted dark:text-dark-muted">2023 — 2024</span></div>
+                            <div class="md:col-span-3"><span class="label-text text-light-muted dark:text-dark-muted">2022 — 2023</span></div>
                             <div class="md:col-span-7">
                                 <h3 class="card-title text-light-text dark:text-dark-text mb-2">Brisia Graduation</h3>
-                                <p class="card-meta text-accent mb-5 sm:mb-7">Social Media Admin</p>
-                                <p class="body-text text-light-muted dark:text-dark-muted max-w-xl">Mengelola alur komunikasi klien dan konversi WhatsApp. Bertanggung jawab atas manajemen jadwal sesi foto dan koordinasi ketersediaan fotografer di lapangan.</p>
+                                <p class="card-meta text-accent mb-5 sm:mb-7" data-i18n="exp_brisia_role">Social Media Admin</p>
+                                <p class="body-text text-light-muted dark:text-dark-muted max-w-xl" data-i18n="exp_brisia_desc">Mengelola alur komunikasi klien dan konversi WhatsApp. Bertanggung jawab atas manajemen jadwal sesi foto dan koordinasi ketersediaan fotografer di lapangan.</p>
                             </div>
                             <div class="md:col-span-2 flex md:justify-end"><div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-light-border dark:border-dark-border flex items-center justify-center"><i class="ph ph-camera text-lg sm:text-xl text-accent"></i></div></div>
                         </div>
                     </article>
                     <article class="experience-card reveal-scale bg-light-surface dark:bg-dark-surface border border-light-border dark:border-dark-border rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12">
                         <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-start">
-                            <div class="md:col-span-3"><span class="label-text text-light-muted dark:text-dark-muted">2022</span></div>
+                            <div class="md:col-span-3"><span class="label-text text-light-muted dark:text-dark-muted">2021 — 2022</span></div>
                             <div class="md:col-span-7">
                                 <h3 class="card-title text-light-text dark:text-dark-text mb-2">Amikom Business Park</h3>
-                                <p class="card-meta text-accent mb-5 sm:mb-7">Social Media Engagement</p>
-                                <p class="body-text text-light-muted dark:text-dark-muted max-w-xl">Merancang Monthly Content Plan, mengelola interaksi harian, merancang copywriting (caption), dan berkolaborasi erat antar tim untuk menjaga konsistensi brand voice.</p>
+                                <p class="card-meta text-accent mb-5 sm:mb-7" data-i18n="exp_amikom_role">Social Media Engagement</p>
+                                <p class="body-text text-light-muted dark:text-dark-muted max-w-xl" data-i18n="exp_amikom_desc">Merancang Monthly Content Plan, mengelola interaksi harian, merancang copywriting (caption), dan berkolaborasi erat antar tim untuk menjaga konsistensi brand voice.</p>
                             </div>
                             <div class="md:col-span-2 flex md:justify-end"><div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-light-border dark:border-dark-border flex items-center justify-center"><i class="ph ph-buildings text-lg sm:text-xl text-accent"></i></div></div>
                         </div>
                     </article>
                     <article class="experience-card reveal-scale bg-light-surface dark:bg-dark-surface border border-light-border dark:border-dark-border rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12">
                         <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-start">
-                            <div class="md:col-span-3"><span class="label-text text-light-muted dark:text-dark-muted">Paralel</span></div>
+                            <div class="md:col-span-3"><span class="label-text text-light-muted dark:text-dark-muted" data-i18n="exp_data_date">Paralel</span></div>
                             <div class="md:col-span-7">
-                                <h3 class="card-title text-light-text dark:text-dark-text mb-2">Data & Machine Learning</h3>
-                                <p class="card-meta text-accent mb-5 sm:mb-7">Data Annotator & ML Support</p>
-                                <p class="body-text text-light-muted dark:text-dark-muted max-w-xl">Memproses data teknis untuk pemodelan machine learning. Berpengalaman dengan Python, TensorFlow, dan arsitektur seperti MobileNetV2 untuk computer vision tasks.</p>
+                                <h3 class="card-title text-light-text dark:text-dark-text mb-2" data-i18n="exp_data_title">Data & Machine Learning</h3>
+                                <p class="card-meta text-accent mb-5 sm:mb-7" data-i18n="exp_data_role">Data Annotator & ML Support</p>
+                                <p class="body-text text-light-muted dark:text-dark-muted max-w-xl" data-i18n="exp_data_desc">Memproses data teknis untuk pemodelan machine learning. Berpengalaman dengan Python, TensorFlow, dan arsitektur seperti MobileNetV2 untuk computer vision tasks.</p>
                             </div>
                             <div class="md:col-span-2 flex md:justify-end"><div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-light-border dark:border-dark-border flex items-center justify-center"><i class="ph ph-code text-lg sm:text-xl text-accent"></i></div></div>
                         </div>
@@ -298,7 +338,7 @@
                     <div class="lg:col-span-4">
                         <div class="reveal lg:sticky lg:top-32">
                             <span class="section-num font-display text-light-border dark:text-dark-border opacity-30 block">03</span>
-                            <p class="mt-3 sm:mt-5 label-text text-light-muted dark:text-dark-muted">Pendidikan</p>
+                            <p class="mt-3 sm:mt-5 label-text text-light-muted dark:text-dark-muted" data-i18n="edu_heading">Pendidikan</p>
                         </div>
                     </div>
                     <div class="lg:col-span-8">
@@ -311,16 +351,16 @@
                                 </div>
                                 <div class="flex-1 space-y-4 sm:space-y-6">
                                     <div>
-                                        <span class="inline-block px-3 py-1 rounded-full bg-accent-muted text-accent text-xs font-medium tracking-wide uppercase mb-3 sm:mb-4">Sarjana</span>
-                                        <h3 class="font-display text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight mb-2">S1 Informatika</h3>
-                                        <p class="text-lg sm:text-xl text-light-muted dark:text-dark-muted">Universitas Amikom Yogyakarta</p>
+                                        <span class="inline-block px-3 py-1 rounded-full bg-accent-muted text-accent text-xs font-medium tracking-wide uppercase mb-3 sm:mb-4" data-i18n="edu_badge">Sarjana</span>
+                                        <h3 class="font-display text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight mb-2" data-i18n="edu_degree">S1 Informatika</h3>
+                                        <p class="text-lg sm:text-xl text-light-muted dark:text-dark-muted" data-i18n="edu_school">Universitas Amikom Yogyakarta</p>
                                     </div>
                                     <div class="flex flex-wrap items-center gap-4 sm:gap-6 text-sm text-light-muted dark:text-dark-muted">
                                         <div class="flex items-center gap-2"><i class="ph ph-calendar text-accent"></i><span>2022 — 2026</span></div>
                                         <div class="flex items-center gap-2"><i class="ph ph-trophy text-accent"></i><span class="font-semibold text-light-text dark:text-dark-text">IPK 3.46</span></div>
                                     </div>
                                     <div class="w-full h-[1px] bg-light-border dark:bg-dark-border opacity-50"></div>
-                                    <p class="body-text text-light-muted dark:text-dark-muted max-w-xl">Studi di bidang teknik komputer dengan fokus pada machine learning, computer vision, dan pengembangan perangkat lunak. Kombinasi keahlian teknis ini memperkuat kemampuan analitis dalam setiap keputusan konten dan strategi digital.</p>
+                                    <p class="body-text text-light-muted dark:text-dark-muted max-w-xl" data-i18n="edu_desc">Studi di bidang teknik komputer dengan fokus pada machine learning, computer vision, dan pengembangan perangkat lunak. Kombinasi keahlian teknis ini memperkuat kemampuan analitis dalam setiap keputusan konten dan strategi digital.</p>
                                 </div>
                             </div>
                         </div>
@@ -334,31 +374,31 @@
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
                     <div class="lg:col-span-4">
                         <span class="reveal section-num font-display text-light-border dark:text-dark-border opacity-30 block">04</span>
-                        <h2 class="reveal reveal-delay-1 section-heading text-light-text dark:text-dark-text mt-3 sm:mt-4 mb-4 sm:mb-6">Alat &<br>Teknologi</h2>
-                        <p class="reveal reveal-delay-2 body-text text-light-muted dark:text-dark-muted">Setiap perangkat dipilih berdasarkan kebutuhan spesifik workflow, bukan tren semata.</p>
+                        <h2 class="reveal reveal-delay-1 section-heading text-light-text dark:text-dark-text mt-3 sm:mt-4 mb-4 sm:mb-6" data-i18n="tools_heading">Alat &<br>Teknologi</h2>
+                        <p class="reveal reveal-delay-2 body-text text-light-muted dark:text-dark-muted" data-i18n="tools_desc">Setiap perangkat dipilih berdasarkan kebutuhan spesifik workflow, bukan tren semata.</p>
                     </div>
                     <div class="lg:col-span-8">
                         <div class="reveal grid grid-cols-1 md:grid-cols-2 gap-12 sm:gap-16">
                             <div>
-                                <h3 class="label-text text-light-muted dark:text-dark-muted mb-6 sm:mb-8 border-b border-light-border dark:border-dark-border pb-4">Kreatif</h3>
+                                <h3 class="label-text text-light-muted dark:text-dark-muted mb-6 sm:mb-8 border-b border-light-border dark:border-dark-border pb-4" data-i18n="tools_creative">Kreatif</h3>
                                 <div class="skill-grid">
-                                    <div class="skill-item"><span class="skill-name">Adobe Premiere Pro</span><span class="skill-meta">Video</span></div>
-                                    <div class="skill-item"><span class="skill-name">After Effects</span><span class="skill-meta">Motion</span></div>
-                                    <div class="skill-item"><span class="skill-name">Photoshop</span><span class="skill-meta">Raster</span></div>
-                                    <div class="skill-item"><span class="skill-name">Illustrator</span><span class="skill-meta">Vector</span></div>
-                                    <div class="skill-item"><span class="skill-name">Lightroom</span><span class="skill-meta">Photo</span></div>
-                                    <div class="skill-item"><span class="skill-name">Figma</span><span class="skill-meta">Design</span></div>
-                                    <div class="skill-item"><span class="skill-name">CapCut</span><span class="skill-meta">Mobile</span></div>
+                                    <div class="skill-item"><span class="skill-name">Adobe Premiere Pro</span><span class="skill-meta" data-i18n="tag_video">Video</span></div>
+                                    <div class="skill-item"><span class="skill-name">After Effects</span><span class="skill-meta" data-i18n="tag_motion">Motion</span></div>
+                                    <div class="skill-item"><span class="skill-name">Photoshop</span><span class="skill-meta" data-i18n="tag_raster">Raster</span></div>
+                                    <div class="skill-item"><span class="skill-name">Illustrator</span><span class="skill-meta" data-i18n="tag_vector">Vector</span></div>
+                                    <div class="skill-item"><span class="skill-name">Lightroom</span><span class="skill-meta" data-i18n="tag_photo">Photo</span></div>
+                                    <div class="skill-item"><span class="skill-name">Figma</span><span class="skill-meta" data-i18n="tag_design">Design</span></div>
+                                    <div class="skill-item"><span class="skill-name">CapCut</span><span class="skill-meta" data-i18n="tag_mobile">Mobile</span></div>
                                 </div>
                             </div>
                             <div>
-                                <h3 class="label-text text-light-muted dark:text-dark-muted mb-6 sm:mb-8 border-b border-light-border dark:border-dark-border pb-4">Teknis</h3>
+                                <h3 class="label-text text-light-muted dark:text-dark-muted mb-6 sm:mb-8 border-b border-light-border dark:border-dark-border pb-4" data-i18n="tools_tech">Teknis</h3>
                                 <div class="skill-grid">
-                                    <div class="skill-item"><span class="skill-name text-accent">Python</span><span class="skill-meta">Language</span></div>
-                                    <div class="skill-item"><span class="skill-name text-accent">TensorFlow</span><span class="skill-meta">ML</span></div>
-                                    <div class="skill-item"><span class="skill-name">MobileNetV2</span><span class="skill-meta">Model</span></div>
-                                    <div class="skill-item"><span class="skill-name">Data Annotation</span><span class="skill-meta">Process</span></div>
-                                    <div class="skill-item"><span class="skill-name">Computer Vision</span><span class="skill-meta">Domain</span></div>
+                                    <div class="skill-item"><span class="skill-name text-accent">Python</span><span class="skill-meta" data-i18n="tag_language">Language</span></div>
+                                    <div class="skill-item"><span class="skill-name text-accent">TensorFlow</span><span class="skill-meta" data-i18n="tag_ml">ML</span></div>
+                                    <div class="skill-item"><span class="skill-name">MobileNetV2</span><span class="skill-meta" data-i18n="tag_model">Model</span></div>
+                                    <div class="skill-item"><span class="skill-name">Data Annotation</span><span class="skill-meta" data-i18n="tag_process">Process</span></div>
+                                    <div class="skill-item"><span class="skill-name">Computer Vision</span><span class="skill-meta" data-i18n="tag_domain">Domain</span></div>
                                 </div>
                             </div>
                         </div>
@@ -370,8 +410,8 @@
         <section id="contact" class="min-h-screen flex items-center px-4 sm:px-6 py-20 sm:py-32">
             <div class="max-w-7xl mx-auto w-full">
                 <span class="reveal section-num font-display text-light-border dark:text-dark-border opacity-30 block mb-2 sm:mb-4">05</span>
-                <h2 class="reveal reveal-delay-1 contact-heading text-light-text dark:text-dark-text mb-8 sm:mb-12 max-w-4xl text-balance">Mari berkolaborasi untuk membangun sesuatu yang <span class="text-accent">bermakna</span>.</h2>
-                <p class="reveal reveal-delay-2 body-large text-light-muted dark:text-dark-muted max-w-2xl mb-10 sm:mb-16 text-balance">Terbuka untuk diskusi proyek, kolaborasi kreatif, atau sekadar bertukar pikiran tentang intersection antara teknologi dan storytelling.</p>
+                <h2 class="reveal reveal-delay-1 contact-heading text-light-text dark:text-dark-text mb-8 sm:mb-12 max-w-4xl text-balance" data-i18n="contact_heading">Mari berkolaborasi untuk membangun sesuatu yang <span class="text-accent">bermakna</span>.</h2>
+                <p class="reveal reveal-delay-2 body-large text-light-muted dark:text-dark-muted max-w-2xl mb-10 sm:mb-16 text-balance" data-i18n="contact_desc">Terbuka untuk diskusi proyek, kolaborasi kreatif, atau sekadar bertukar pikiran tentang intersection antara teknologi dan storytelling.</p>
                 <div class="reveal reveal-delay-3 flex flex-col sm:flex-row items-start gap-6 sm:gap-8">
                     <a href="mailto:dicofr6681@gmail.com" class="contact-btn group font-display inline-flex items-center gap-3 sm:gap-4 px-6 sm:px-8 py-3 sm:py-4 bg-light-text text-light-bg dark:bg-dark-text dark:text-dark-bg rounded-full font-medium text-base sm:text-lg">
                         <span>dicofr6681@gmail.com</span><i class="ph ph-arrow-right text-xl group-hover:translate-x-1 transition-transform"></i>
@@ -387,11 +427,160 @@
     </main>
     <footer class="relative z-10 border-t border-light-border dark:border-dark-border px-4 sm:px-6">
         <div class="max-w-7xl mx-auto py-6 sm:py-8 flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-4">
-            <p class="footer-text text-light-muted dark:text-dark-muted">&copy; <span id="year" class="year-counter"></span> Dico Fathatul Rizki. Crafted with intention.</p>
-            <p class="footer-text text-light-muted dark:text-dark-muted">Yogyakarta, Indonesia</p>
+            <p class="footer-text text-light-muted dark:text-dark-muted">&copy; <span id="year" class="year-counter"></span> <span data-i18n="footer_left">Dico Fathatul Rizki. Crafted with intention.</span></p>
+            <p class="footer-text text-light-muted dark:text-dark-muted" data-i18n="footer_right">Yogyakarta, Indonesia</p>
         </div>
     </footer>
     <script>
+        const translations = {
+            id: {
+                page_title: "Dico Fathatul Rizki — Social Media & Data",
+                meta_description: "Portfolio of Dico Fathatul Rizki — Social Media Specialist & Data Annotator based in Yogyakarta, Indonesia.",
+                nav_about: "Tentang",
+                nav_work: "Pengalaman",
+                nav_education: "Pendidikan",
+                nav_tools: "Alat",
+                nav_contact: "Kontak",
+                hero_subtitle: "Social Media Specialist & Data Annotator",
+                hero_body: "Harmoni antara <span class='accent-italic text-accent'>kreativitas visual</span> dan <span class='accent-italic text-accent'>presisi data teknis</span>. Membangun narasi digital yang berarti.",
+                hero_cta: "Eksplorasi",
+                scroll_hint: "Scroll",
+                about_heading: "Tentang",
+                about_p1: "Saya percaya bahwa konten yang baik adalah <span class='font-display font-semibold text-accent'>harmoni antara narasi manusiawi</span> dan <span class='font-display font-semibold text-accent'>presisi data</span>.",
+                about_p2: "Latar belakang Informatika memberi saya lensa teknis, sedangkan pengalaman di industri kreatif mengasah empati visual. Saya pernah mengelola konten untuk lima brand secara simultan di Migunani Creative, merancang strategi dari riset tren hingga eksekusi visual — fotografi, videografi, dan editing. Pengalaman sebelumnya di Brisia Graduation dan Amikom Business Park memperkuat kemampuan saya dalam manajemen komunikasi dan perencanaan jangka panjang.",
+                about_p3: "Sebagai Data Annotator, saya memproses data teknis untuk pemodelan machine learning. Berpengalaman dengan Python, TensorFlow, dan arsitektur seperti MobileNetV2 untuk computer vision tasks.",
+                work_heading: "Pengalaman",
+                work_subheading: "Empat tahun di industri kreatif dan teknologi",
+                exp_migunani_role: "Social Media Content Creator",
+                exp_migunani_desc: "Mengelola 5 brand di Instagram dan TikTok secara simultan. Merancang Monthly Content Plan, menjalankan produksi kreatif mandiri (fotografi produk, videografi, editing video, desain carousel), dan membangun interaksi organik melalui manajemen komunitas dan kolom komentar.",
+                exp_brisia_role: "Social Media Admin",
+                exp_brisia_desc: "Mengelola alur komunikasi klien dan konversi WhatsApp. Bertanggung jawab atas manajemen jadwal sesi foto dan koordinasi ketersediaan fotografer di lapangan.",
+                exp_amikom_role: "Social Media Engagement",
+                exp_amikom_desc: "Merancang Monthly Content Plan, mengelola interaksi harian, merancang copywriting (caption), dan berkolaborasi erat antar tim untuk menjaga konsistensi brand voice.",
+                exp_data_date: "Paralel",
+                exp_data_title: "Data & Machine Learning",
+                exp_data_role: "Data Annotator & ML Support",
+                exp_data_desc: "Memproses data teknis untuk pemodelan machine learning. Berpengalaman dengan Python, TensorFlow, dan arsitektur seperti MobileNetV2 untuk computer vision tasks.",
+                edu_heading: "Pendidikan",
+                edu_badge: "Sarjana",
+                edu_degree: "S1 Informatika",
+                edu_school: "Universitas Amikom Yogyakarta",
+                edu_desc: "Studi di bidang teknik komputer dengan fokus pada machine learning, computer vision, dan pengembangan perangkat lunak. Kombinasi keahlian teknis ini memperkuat kemampuan analitis dalam setiap keputusan konten dan strategi digital.",
+                tools_heading: "Alat &<br>Teknologi",
+                tools_desc: "Setiap perangkat dipilih berdasarkan kebutuhan spesifik workflow, bukan tren semata.",
+                tools_creative: "Kreatif",
+                tools_tech: "Teknis",
+                tag_video: "Video",
+                tag_motion: "Motion",
+                tag_raster: "Raster",
+                tag_vector: "Vector",
+                tag_photo: "Photo",
+                tag_design: "Design",
+                tag_mobile: "Mobile",
+                tag_language: "Language",
+                tag_ml: "ML",
+                tag_model: "Model",
+                tag_process: "Process",
+                tag_domain: "Domain",
+                contact_heading: "Mari berkolaborasi untuk membangun sesuatu yang <span class='text-accent'>bermakna</span>.",
+                contact_desc: "Terbuka untuk diskusi proyek, kolaborasi kreatif, atau sekadar bertukar pikiran tentang intersection antara teknologi dan storytelling.",
+                footer_left: "Dico Fathatul Rizki. Crafted with intention.",
+                footer_right: "Yogyakarta, Indonesia"
+            },
+            en: {
+                page_title: "Dico Fathatul Rizki — Social Media & Data",
+                meta_description: "Portfolio of Dico Fathatul Rizki — Social Media Specialist & Data Annotator based in Yogyakarta, Indonesia.",
+                nav_about: "About",
+                nav_work: "Experience",
+                nav_education: "Education",
+                nav_tools: "Tools",
+                nav_contact: "Contact",
+                hero_subtitle: "Social Media Specialist & Data Annotator",
+                hero_body: "A harmony between <span class='accent-italic text-accent'>visual creativity</span> and <span class='accent-italic text-accent'>technical data precision</span>. Building meaningful digital narratives.",
+                hero_cta: "Explore",
+                scroll_hint: "Scroll",
+                about_heading: "About",
+                about_p1: "I believe that great content is a <span class='font-display font-semibold text-accent'>harmony between human storytelling</span> and <span class='font-display font-semibold text-accent'>data precision</span>.",
+                about_p2: "My background in Informatics gives me a technical lens, while experience in the creative industry hones my visual empathy. I previously managed content for five brands simultaneously at Migunani Creative, designing strategy from trend research to visual execution — photography, videography, and editing. Prior experiences at Brisia Graduation and Amikom Business Park strengthened my communication management and long-term planning abilities.",
+                about_p3: "As a Data Annotator, I process technical data for machine learning modeling. Experienced with Python, TensorFlow, and architectures such as MobileNetV2 for computer vision tasks.",
+                work_heading: "Experience",
+                work_subheading: "Four years in the creative and technology industry",
+                exp_migunani_role: "Social Media Content Creator",
+                exp_migunani_desc: "Managed 5 brands on Instagram and TikTok simultaneously. Designed Monthly Content Plans, executed independent creative production (product photography, videography, video editing, carousel design), and built organic engagement through community management and comment moderation.",
+                exp_brisia_role: "Social Media Admin",
+                exp_brisia_desc: "Managed client communication flow and WhatsApp conversions. Responsible for photo session schedule management and on-field photographer availability coordination.",
+                exp_amikom_role: "Social Media Engagement",
+                exp_amikom_desc: "Designed Monthly Content Plans, managed daily interactions, crafted copywriting (captions), and collaborated closely across teams to maintain brand voice consistency.",
+                exp_data_date: "Parallel",
+                exp_data_title: "Data & Machine Learning",
+                exp_data_role: "Data Annotator & ML Support",
+                exp_data_desc: "Processed technical data for machine learning modeling. Experienced with Python, TensorFlow, and architectures such as MobileNetV2 for computer vision tasks.",
+                edu_heading: "Education",
+                edu_badge: "Bachelor",
+                edu_degree: "Bachelor of Informatics",
+                edu_school: "Universitas Amikom Yogyakarta",
+                edu_desc: "Studied computer engineering with a focus on machine learning, computer vision, and software development. This combination of technical expertise strengthens analytical capabilities in every content decision and digital strategy.",
+                tools_heading: "Tools &<br>Technologies",
+                tools_desc: "Every tool is chosen based on specific workflow needs, not trends.",
+                tools_creative: "Creative",
+                tools_tech: "Technical",
+                tag_video: "Video",
+                tag_motion: "Motion",
+                tag_raster: "Raster",
+                tag_vector: "Vector",
+                tag_photo: "Photo",
+                tag_design: "Design",
+                tag_mobile: "Mobile",
+                tag_language: "Language",
+                tag_ml: "ML",
+                tag_model: "Model",
+                tag_process: "Process",
+                tag_domain: "Domain",
+                contact_heading: "Let's collaborate to build something <span class='text-accent'>meaningful</span>.",
+                contact_desc: "Open for project discussions, creative collaborations, or simply exchanging thoughts on the intersection of technology and storytelling.",
+                footer_left: "Dico Fathatul Rizki. Crafted with intention.",
+                footer_right: "Yogyakarta, Indonesia"
+            }
+        };
+
+        let currentLang = localStorage.getItem('lang') || 'id';
+
+        function updateLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('lang', lang);
+            document.documentElement.lang = lang === 'id' ? 'id' : 'en';
+
+            document.getElementById('lang-id').classList.toggle('active', lang === 'id');
+            document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    el.innerHTML = translations[lang][key];
+                }
+            });
+
+            const titleEl = document.querySelector('title[data-i18n]');
+            if (titleEl && translations[lang][titleEl.getAttribute('data-i18n')]) {
+                document.title = translations[lang][titleEl.getAttribute('data-i18n')];
+            }
+
+            const metaDesc = document.querySelector('meta[name="description"][data-i18n]');
+            if (metaDesc && translations[lang][metaDesc.getAttribute('data-i18n')]) {
+                metaDesc.setAttribute('content', translations[lang][metaDesc.getAttribute('data-i18n')]);
+            }
+        }
+
+        function toggleLanguage() {
+            const newLang = currentLang === 'id' ? 'en' : 'id';
+            document.body.classList.add('lang-fade', 'switching');
+            setTimeout(() => {
+                updateLanguage(newLang);
+                document.body.classList.remove('switching');
+                setTimeout(() => document.body.classList.remove('lang-fade'), 300);
+            }, 300);
+        }
+
         const html = document.documentElement;
         const themeToggle = document.getElementById('theme-toggle');
         if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) { html.classList.add('dark'); } else { html.classList.remove('dark'); }
@@ -412,6 +601,7 @@
         if (eduCard && window.innerWidth > 768) { eduCard.addEventListener('mousemove', (e) => { const rect = eduCard.getBoundingClientRect(); const x = e.clientX - rect.left; const y = e.clientY - rect.top; const centerX = rect.width / 2; const centerY = rect.height / 2; eduCard.style.transform = `perspective(1000px) rotateX(${(y - centerY) / 20}deg) rotateY(${(centerX - x) / 20}deg)`; }); eduCard.addEventListener('mouseleave', () => { eduCard.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)'; }); }
         setTimeout(() => { document.querySelectorAll('.line-reveal').forEach((el, i) => { setTimeout(() => el.classList.add('visible'), i * 150); }); }, 300);
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { document.querySelectorAll('.reveal, .reveal-scale, .line-reveal, .animated-rule').forEach(el => { el.classList.add('visible'); }); }
+        updateLanguage(currentLang);
     </script>
 </body>
 </html>
