@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Dico Fathatul Rizki — Social Media & Data</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        dark: { bg: '#030303', surface: '#0A0A0A', text: '#F5F5F0', muted: '#6B6B6B', border: '#1A1A1A', elevated: '#111111' },
+                        light: { bg: '#FAFAF8', surface: '#FFFFFF', text: '#1C1917', muted: '#78716C', border: '#E7E5E4', elevated: '#F5F5F4' },
+                        accent: { DEFAULT: '#C27B3C', light: '#D4A373', dark: '#8B5E3C', muted: 'rgba(194, 123, 60, 0.12)' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; overflow-x: hidden; scroll-behavior: smooth; }
+        body { overflow-x: hidden; background-color: #FAFAF8; color: #1C1917; font-family: 'Inter', sans-serif; font-weight: 400; line-height: 1.6; }
+        .dark body { background-color: #030303; color: #F5F5F0; }
+        ::selection { background-color: #C27B3C; color: #030303; }
+        .ambient-glow { position: fixed; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(194, 123, 60, 0.07) 0%, transparent 70%); pointer-events: none; z-index: 1; transform: translate(-50%, -50%); transition: left 0.3s ease-out, top 0.3s ease-out; will-change: left, top; }
+        .mesh-bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.35; background: radial-gradient(at 0% 0%, rgba(194, 123, 60, 0.12) 0px, transparent 50%), radial-gradient(at 100% 0%, rgba(194, 123, 60, 0.06) 0px, transparent 50%), radial-gradient(at 100% 100%, rgba(194, 123, 60, 0.10) 0px, transparent 50%), radial-gradient(at 0% 100%, rgba(194, 123, 60, 0.04) 0px, transparent 50%); animation: meshMove 20s ease-in-out infinite alternate; }
+        .dark .mesh-bg { opacity: 0.22; background: radial-gradient(at 0% 0%, rgba(194, 123, 60, 0.18) 0px, transparent 50%), radial-gradient(at 100% 0%, rgba(194, 123, 60, 0.08) 0px, transparent 50%), radial-gradient(at 100% 100%, rgba(194, 123, 60, 0.14) 0px, transparent 50%), radial-gradient(at 0% 100%, rgba(194, 123, 60, 0.06) 0px, transparent 50%); }
+        @keyframes meshMove { 0% { transform: scale(1) rotate(0deg); } 50% { transform: scale(1.1) rotate(2deg); } 100% { transform: scale(1) rotate(0deg); } }
+        .noise-overlay { position: fixed; inset: 0; pointer-events: none; z-index: 9998; opacity: 0.025; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+        .vignette { position: fixed; inset: 0; pointer-events: none; z-index: 9997; background: radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.12) 100%); opacity: 0; transition: opacity 0.5s; }
+        .dark .vignette { opacity: 1; }
+        .progress-bar { position: fixed; top: 0; left: 0; height: 2px; background: #C27B3C; z-index: 9999; transform-origin: left; transform: scaleX(0); will-change: transform; }
+        .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .reveal-scale { opacity: 0; transform: scale(0.96); transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal-scale.visible { opacity: 1; transform: scale(1); }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .line-reveal { overflow: hidden; display: block; }
+        .line-reveal-inner { display: block; transform: translateY(110%); transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
+        .line-reveal.visible .line-reveal-inner { transform: translateY(0); }
+        .hero-title { font-family: 'Space Grotesk', sans-serif; font-size: clamp(3.5rem, 13vw, 11rem); line-height: 0.88; letter-spacing: -0.045em; font-weight: 700; font-feature-settings: "ss01" on, "ss02" on; }
+        .hero-subtitle { font-family: 'Space Grotesk', sans-serif; font-size: clamp(0.65rem, 1.2vw, 0.8rem); letter-spacing: 0.12em; font-weight: 500; text-transform: uppercase; }
+        .section-num { font-family: 'Space Grotesk', sans-serif; font-variant-numeric: tabular-nums; font-feature-settings: "tnum"; font-size: clamp(5rem, 14vw, 10rem); line-height: 0.85; font-weight: 300; letter-spacing: -0.04em; }
+        .section-heading { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.2rem, 5vw, 4.5rem); line-height: 1; letter-spacing: -0.035em; font-weight: 700; }
+        .label-text { font-family: 'Space Grotesk', sans-serif; font-size: 0.7rem; letter-spacing: 0.15em; font-weight: 500; text-transform: uppercase; }
+        .body-large { font-family: 'Inter', sans-serif; font-size: clamp(1.1rem, 2vw, 1.5rem); line-height: 1.65; font-weight: 400; letter-spacing: -0.01em; }
+        .body-text { font-family: 'Inter', sans-serif; font-size: clamp(0.9rem, 1.2vw, 1.05rem); line-height: 1.75; font-weight: 400; letter-spacing: 0; }
+        .card-title { font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.4rem, 2.5vw, 2rem); line-height: 1.1; letter-spacing: -0.03em; font-weight: 700; }
+        .card-meta { font-family: 'Space Grotesk', sans-serif; font-size: 0.7rem; letter-spacing: 0.1em; font-weight: 600; text-transform: uppercase; }
+        .skill-name { font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 500; letter-spacing: -0.01em; }
+        .contact-heading { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.5rem, 6vw, 5rem); line-height: 0.95; letter-spacing: -0.04em; font-weight: 700; }
+        .accent-italic { font-family: 'Inter', sans-serif; font-style: italic; font-weight: 400; }
+        .kinetic-text { background: linear-gradient(90deg, #1C1917 0%, #C27B3C 40%, #C27B3C 60%, #1C1917 100%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: kineticShift 8s ease-in-out infinite; }
+        .dark .kinetic-text { background: linear-gradient(90deg, #F5F5F0 0%, #C27B3C 40%, #C27B3C 60%, #F5F5F0 100%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        @keyframes kineticShift { 0%, 100% { background-position: 0% center; } 50% { background-position: 100% center; } }
+        .scroll-hint { animation: bounce 2s infinite; }
+        @keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-8px); } 60% { transform: translateY(-4px); } }
+        .animated-rule { height: 1px; background: linear-gradient(90deg, transparent, currentColor, transparent); opacity: 0.12; transform: scaleX(0); transform-origin: center; transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1); }
+        .animated-rule.visible { transform: scaleX(1); }
+        .link-line { position: relative; display: inline-block; }
+        .link-line::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 100%; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: right; transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+        .link-line:hover::after { transform: scaleX(1); transform-origin: left; }
+        .experience-stack { position: relative; }
+        .experience-card { position: sticky; background: inherit; transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1); will-change: transform, filter; }
+        .experience-card:nth-child(1) { z-index: 4; top: 8vh; }
+        .experience-card:nth-child(2) { z-index: 3; top: 10vh; }
+        .experience-card:nth-child(3) { z-index: 2; top: 12vh; }
+        .experience-card:nth-child(4) { z-index: 1; top: 14vh; }
+        .experience-card:hover { box-shadow: 0 25px 50px -12px rgba(194, 123, 60, 0.15); }
+        .dark .experience-card:hover { box-shadow: 0 25px 50px -12px rgba(194, 123, 60, 0.1); }
+        .education-card { position: relative; overflow: hidden; transition: transform 0.1s ease-out; transform-style: preserve-3d; perspective: 1000px; }
+        .education-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(194, 123, 60, 0.04) 0%, transparent 50%); opacity: 0; transition: opacity 0.5s; pointer-events: none; }
+        .education-card:hover::before { opacity: 1; }
+        .education-logo-container { transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); transform-style: preserve-3d; }
+        .education-card:hover .education-logo-container { transform: translateZ(20px) scale(1.02); }
+        .education-logo { filter: grayscale(100%) contrast(1.1); transition: filter 0.5s, transform 0.5s; }
+        .dark .education-logo { filter: grayscale(100%) contrast(1.1) brightness(1.2); }
+        .education-card:hover .education-logo { filter: grayscale(0%) contrast(1); }
+        .dark .education-card:hover .education-logo { filter: grayscale(0%) contrast(1) brightness(1); }
+        .skill-grid { display: grid; gap: 0; }
+        .skill-item { display: flex; align-items: center; justify-content: space-between; padding: 1.1rem 0; border-bottom: 1px solid rgba(0,0,0,0.06); cursor: default; transition: padding-left 0.4s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.4s, border-color 0.4s; }
+        .dark .skill-item { border-color: rgba(255,255,255,0.06); }
+        .skill-item:hover { padding-left: 1rem; border-color: rgba(194, 123, 60, 0.3); }
+        .skill-item .skill-name { transition: color 0.3s; }
+        .skill-item:hover .skill-name { color: #C27B3C; }
+        .skill-item .skill-meta { font-family: 'Space Grotesk', sans-serif; font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; color: #78716C; opacity: 0; transform: translateX(-8px); transition: opacity 0.3s, transform 0.3s; }
+        .dark .skill-item .skill-meta { color: #6B6B6B; }
+        .skill-item:hover .skill-meta { opacity: 1; transform: translateX(0); }
+        .contact-btn { position: relative; overflow: hidden; transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s; box-shadow: 0 0 0 0 rgba(194, 123, 60, 0); }
+        .contact-btn:hover { transform: scale(1.05); box-shadow: 0 20px 40px -10px rgba(194, 123, 60, 0.3); }
+        .contact-btn::before { content: ''; position: absolute; top: 50%; left: 50%; width: 0; height: 0; background: rgba(255,255,255,0.1); border-radius: 50%; transform: translate(-50%, -50%); transition: width 0.6s, height 0.6s; }
+        .contact-btn:hover::before { width: 300px; height: 300px; }
+        .social-icon { position: relative; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); overflow: hidden; }
+        .social-icon::before { content: ''; position: absolute; inset: 0; background: rgba(194, 123, 60, 0.1); transform: scale(0); border-radius: 50%; transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        .social-icon:hover::before { transform: scale(1); }
+        .social-icon:hover { border-color: #C27B3C; color: #C27B3C; transform: translateY(-4px); box-shadow: 0 10px 30px -10px rgba(194, 123, 60, 0.3); }
+        .social-icon i { position: relative; z-index: 1; }
+        .mobile-menu { position: fixed; inset: 0; z-index: 100; background: rgba(250, 250, 248, 0.97); backdrop-filter: blur(30px); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2rem; opacity: 0; pointer-events: none; transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+        .dark .mobile-menu { background: rgba(3, 3, 3, 0.97); }
+        .mobile-menu.active { opacity: 1; pointer-events: all; }
+        .mobile-menu a { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 700; opacity: 0; transform: translateY(20px); transition: opacity 0.4s, transform 0.4s; }
+        .mobile-menu.active a { opacity: 1; transform: translateY(0); }
+        .mobile-menu.active a:nth-child(1) { transition-delay: 0.1s; }
+        .mobile-menu.active a:nth-child(2) { transition-delay: 0.2s; }
+        .mobile-menu.active a:nth-child(3) { transition-delay: 0.3s; }
+        .mobile-menu.active a:nth-child(4) { transition-delay: 0.4s; }
+        .mobile-menu.active a:nth-child(5) { transition-delay: 0.5s; }
+        .hamburger { width: 24px; height: 20px; position: relative; cursor: pointer; z-index: 101; }
+        .hamburger span { position: absolute; left: 0; width: 100%; height: 2px; background: currentColor; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        .hamburger span:nth-child(1) { top: 0; }
+        .hamburger span:nth-child(2) { top: 50%; transform: translateY(-50%); }
+        .hamburger span:nth-child(3) { bottom: 0; }
+        .hamburger.active span:nth-child(1) { top: 50%; transform: translateY(-50%) rotate(45deg); }
+        .hamburger.active span:nth-child(2) { opacity: 0; transform: translateX(-10px); }
+        .hamburger.active span:nth-child(3) { bottom: 50%; transform: translateY(50%) rotate(-45deg); }
+        @media (max-width: 768px) { .experience-card { position: relative !important; top: 0 !important; } .hero-title { letter-spacing: -0.03em; } .ambient-glow { display: none; } .section-num { font-size: 4rem; } }
+        @media (max-width: 480px) { .hero-title { font-size: clamp(2.8rem, 14vw, 4rem); letter-spacing: -0.02em; } .section-num { font-size: 3.5rem; } .contact-heading { font-size: clamp(2rem, 10vw, 3rem); } }
+        @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } .reveal, .reveal-scale, .line-reveal-inner, .animated-rule { opacity: 1; transform: none; } .mesh-bg { animation: none; } }
+        ::-webkit-scrollbar { width: 3px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #404040; border-radius: 2px; }
+        *:focus-visible { outline: 2px solid #C27B3C; outline-offset: 3px; }
+        .text-balance { text-wrap: balance; }
+        .nav-logo { font-family: 'Space Grotesk', sans-serif; font-weight: 700; letter-spacing: -0.02em; }
+        .footer-text { font-family: 'Space Grotesk', sans-serif; font-size: 0.75rem; letter-spacing: 0.04em; }
+        .year-counter { font-family: 'Space Grotesk', sans-serif; font-variant-numeric: tabular-nums; }
+    </style>
+</head>
+<body class="transition-colors duration-700">
+    <div class="ambient-glow" id="ambient-glow" aria-hidden="true"></div>
+    <div class="mesh-bg" aria-hidden="true"></div>
+    <div class="progress-bar" aria-hidden="true"></div>
+    <div class="noise-overlay" aria-hidden="true"></div>
+    <div class="vignette" aria-hidden="true"></div>
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="#about" class="text-light-text dark:text-dark-text" onclick="toggleMenu()">Tentang</a>
+        <a href="#work" class="text-light-text dark:text-dark-text" onclick="toggleMenu()">Pengalaman</a>
+        <a href="#education" class="text-light-text dark:text-dark-text" onclick="toggleMenu()">Pendidikan</a>
+        <a href="#tools" class="text-light-text dark:text-dark-text" onclick="toggleMenu()">Alat</a>
+        <a href="#contact" class="text-light-text dark:text-dark-text" onclick="toggleMenu()">Kontak</a>
+    </div>
+    <header class="fixed top-0 w-full z-50 mix-blend-difference">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
+            <a href="#" class="nav-logo text-sm text-white/90 hover:text-white transition-colors relative z-[102]">DFR</a>
+            <div class="flex items-center gap-6 sm:gap-8">
+                <nav class="hidden md:flex items-center gap-10">
+                    <a href="#about" class="label-text text-white/50 hover:text-white transition-colors link-line">Tentang</a>
+                    <a href="#work" class="label-text text-white/50 hover:text-white transition-colors link-line">Pengalaman</a>
+                    <a href="#education" class="label-text text-white/50 hover:text-white transition-colors link-line">Pendidikan</a>
+                    <a href="#tools" class="label-text text-white/50 hover:text-white transition-colors link-line">Alat</a>
+                    <a href="#contact" class="label-text text-white/50 hover:text-white transition-colors link-line">Kontak</a>
+                </nav>
+                <button id="theme-toggle" aria-label="Toggle Dark Mode" class="text-white/70 hover:text-white transition-colors p-2 relative z-[102]">
+                    <i class="ph ph-moon text-lg dark:hidden block"></i>
+                    <i class="ph ph-sun text-lg hidden dark:block"></i>
+                </button>
+                <button class="hamburger md:hidden text-white relative z-[102]" id="hamburger" aria-label="Menu" onclick="toggleMenu()">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+    <main class="relative z-10">
+        <section class="min-h-[100dvh] flex flex-col justify-center px-4 sm:px-6 relative overflow-hidden">
+            <div class="max-w-7xl mx-auto w-full pt-20">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end">
+                    <div class="lg:col-span-8">
+                        <p class="line-reveal mb-5 sm:mb-7">
+                            <span class="line-reveal-inner hero-subtitle text-light-muted dark:text-dark-muted">Social Media Specialist & Data Annotator</span>
+                        </p>
+                        <h1 class="hero-title text-light-text dark:text-dark-text mb-6 sm:mb-10">
+                            <span class="line-reveal"><span class="line-reveal-inner">Dico</span></span>
+                            <span class="line-reveal"><span class="line-reveal-inner">Fathatul</span></span>
+                            <span class="line-reveal block mt-1 sm:mt-2"><span class="line-reveal-inner kinetic-text">Rizki</span></span>
+                        </h1>
+                    </div>
+                    <div class="lg:col-span-4 lg:pb-10">
+                        <p class="reveal body-text text-light-muted dark:text-dark-muted max-w-sm text-balance">
+                            Harmoni antara <span class="accent-italic text-accent">kreativitas visual</span> dan <span class="accent-italic text-accent">presisi data teknis</span>. Membangun narasi digital yang berarti.
+                        </p>
+                        <div class="reveal reveal-delay-2 mt-8 sm:mt-12 flex items-center gap-4">
+                            <a href="#about" class="font-display inline-flex items-center gap-3 px-5 sm:px-7 py-3.5 bg-light-text text-light-bg dark:bg-dark-text dark:text-dark-bg rounded-full text-sm font-medium hover:scale-105 transition-transform duration-300">
+                                <span>Eksplorasi</span><i class="ph ph-arrow-down-right text-lg"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="absolute bottom-8 sm:bottom-12 left-4 sm:left-6 lg:left-12 flex items-center gap-3 label-text text-light-muted dark:text-dark-muted">
+                <span class="w-8 sm:w-12 h-[1px] bg-current"></span><span class="scroll-hint">Scroll</span>
+            </div>
+        </section>
+        <section id="about" class="min-h-screen flex items-center px-4 sm:px-6 py-20 sm:py-32">
+            <div class="max-w-7xl mx-auto w-full">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
+                    <div class="lg:col-span-4">
+                        <div class="reveal lg:sticky lg:top-32">
+                            <span class="section-num font-display text-light-border dark:text-dark-border opacity-30 block">01</span>
+                            <p class="mt-3 sm:mt-5 label-text text-light-muted dark:text-dark-muted">Tentang</p>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-8 space-y-10 sm:space-y-14">
+                        <p class="reveal body-large text-light-text dark:text-dark-text text-balance">
+                            Saya percaya bahwa konten yang baik adalah <span class="font-display font-semibold text-accent">harmoni antara narasi manusiawi</span> dan <span class="font-display font-semibold text-accent">presisi data</span>.
+                        </p>
+                        <div class="reveal reveal-delay-1 w-16 sm:w-24 h-[1px] bg-accent"></div>
+                        <p class="reveal reveal-delay-2 body-text text-light-muted dark:text-dark-muted max-w-2xl text-balance">
+                            Latar belakang Informatika memberi saya lensa teknis, sedangkan pengalaman di industri kreatif mengasah empati visual. 
+                            Saya pernah mengelola konten untuk lima brand secara simultan di Migunani Creative, merancang strategi dari riset tren hingga eksekusi visual — fotografi, videografi, dan editing. 
+                            Pengalaman sebelumnya di Brisia Graduation dan Amikom Business Park memperkuat kemampuan saya dalam manajemen komunikasi dan perencanaan jangka panjang.
+                        </p>
+                        <p class="reveal reveal-delay-3 body-text text-light-muted dark:text-dark-muted max-w-2xl text-balance">
+                            Sebagai Data Annotator, saya memproses data teknis untuk pemodelan machine learning. Berpengalaman dengan Python, 
+                            TensorFlow, dan arsitektur seperti MobileNetV2 untuk computer vision tasks.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="animated-rule max-w-7xl mx-auto px-4 sm:px-6" aria-hidden="true"></div>
+        <section id="work" class="px-4 sm:px-6 py-20 sm:py-32">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-14 sm:mb-24 gap-4">
+                    <div>
+                        <span class="reveal section-num font-display text-light-border dark:text-dark-border opacity-30 block">02</span>
+                        <h2 class="reveal reveal-delay-1 section-heading text-light-text dark:text-dark-text mt-3 sm:mt-4">Pengalaman</h2>
+                    </div>
+                    <p class="reveal reveal-delay-2 label-text text-light-muted dark:text-dark-muted max-w-xs sm:text-right">Empat tahun di industri kreatif dan teknologi</p>
+                </div>
+                <div class="experience-stack space-y-6 sm:space-y-8">
+                    <article class="experience-card reveal-scale bg-light-surface dark:bg-dark-surface border border-light-border dark:border-dark-border rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12">
+                        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-start">
+                            <div class="md:col-span-3"><span class="label-text text-light-muted dark:text-dark-muted">2023 — 2024</span></div>
+                            <div class="md:col-span-7">
+                                <h3 class="card-title text-light-text dark:text-dark-text mb-2">Migunani Creative</h3>
+                                <p class="card-meta text-accent mb-5 sm:mb-7">Social Media Content Creator</p>
+                                <p class="body-text text-light-muted dark:text-dark-muted max-w-xl">Mengelola 5 brand di Instagram dan TikTok secara simultan. Merancang Monthly Content Plan, menjalankan produksi kreatif mandiri (fotografi produk, videografi, editing video, desain carousel), dan membangun interaksi organik melalui manajemen komunitas dan kolom komentar.</p>
+                            </div>
+                            <div class="md:col-span-2 flex md:justify-end"><div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-light-border dark:border-dark-border flex items-center justify-center"><i class="ph ph-bezier-curve text-lg sm:text-xl text-accent"></i></div></div>
+                        </div>
+                    </article>
+                    <article class="experience-card reveal-scale bg-light-surface dark:bg-dark-surface border border-light-border dark:border-dark-border rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12">
+                        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-start">
+                            <div class="md:col-span-3"><span class="label-text text-light-muted dark:text-dark-muted">2022 — 2023</span></div>
+                            <div class="md:col-span-7">
+                                <h3 class="card-title text-light-text dark:text-dark-text mb-2">Brisia Graduation</h3>
+                                <p class="card-meta text-accent mb-5 sm:mb-7">Social Media Admin</p>
+                                <p class="body-text text-light-muted dark:text-dark-muted max-w-xl">Mengelola alur komunikasi klien dan konversi WhatsApp. Bertanggung jawab atas manajemen jadwal sesi foto dan koordinasi ketersediaan fotografer di lapangan.</p>
+                            </div>
+                            <div class="md:col-span-2 flex md:justify-end"><div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-light-border dark:border-dark-border flex items-center justify-center"><i class="ph ph-camera text-lg sm:text-xl text-accent"></i></div></div>
+                        </div>
+                    </article>
+                    <article class="experience-card reveal-scale bg-light-surface dark:bg-dark-surface border border-light-border dark:border-dark-border rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12">
+                        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-start">
+                            <div class="md:col-span-3"><span class="label-text text-light-muted dark:text-dark-muted">2021 — 2022</span></div>
+                            <div class="md:col-span-7">
+                                <h3 class="card-title text-light-text dark:text-dark-text mb-2">Amikom Business Park</h3>
+                                <p class="card-meta text-accent mb-5 sm:mb-7">Social Media Engagement</p>
+                                <p class="body-text text-light-muted dark:text-dark-muted max-w-xl">Merancang Monthly Content Plan, mengelola interaksi harian, merancang copywriting (caption), dan berkolaborasi erat antar tim untuk menjaga konsistensi brand voice.</p>
+                            </div>
+                            <div class="md:col-span-2 flex md:justify-end"><div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-light-border dark:border-dark-border flex items-center justify-center"><i class="ph ph-buildings text-lg sm:text-xl text-accent"></i></div></div>
+                        </div>
+                    </article>
+                    <article class="experience-card reveal-scale bg-light-surface dark:bg-dark-surface border border-light-border dark:border-dark-border rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12">
+                        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-start">
+                            <div class="md:col-span-3"><span class="label-text text-light-muted dark:text-dark-muted">Paralel</span></div>
+                            <div class="md:col-span-7">
+                                <h3 class="card-title text-light-text dark:text-dark-text mb-2">Data & Machine Learning</h3>
+                                <p class="card-meta text-accent mb-5 sm:mb-7">Data Annotator & ML Support</p>
+                                <p class="body-text text-light-muted dark:text-dark-muted max-w-xl">Memproses data teknis untuk pemodelan machine learning. Berpengalaman dengan Python, TensorFlow, dan arsitektur seperti MobileNetV2 untuk computer vision tasks.</p>
+                            </div>
+                            <div class="md:col-span-2 flex md:justify-end"><div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-light-border dark:border-dark-border flex items-center justify-center"><i class="ph ph-code text-lg sm:text-xl text-accent"></i></div></div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+        <div class="animated-rule max-w-7xl mx-auto px-4 sm:px-6" aria-hidden="true"></div>
+        <section id="education" class="px-4 sm:px-6 py-20 sm:py-32">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
+                    <div class="lg:col-span-4">
+                        <div class="reveal lg:sticky lg:top-32">
+                            <span class="section-num font-display text-light-border dark:text-dark-border opacity-30 block">03</span>
+                            <p class="mt-3 sm:mt-5 label-text text-light-muted dark:text-dark-muted">Pendidikan</p>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-8">
+                        <div class="reveal education-card bg-light-surface dark:bg-dark-surface border border-light-border dark:border-dark-border rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12" id="education-card">
+                            <div class="flex flex-col md:flex-row gap-8 md:gap-12 items-start">
+                                <div class="flex-shrink-0 education-logo-container">
+                                    <div class="w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 rounded-2xl bg-light-elevated dark:bg-dark-elevated border border-light-border dark:border-dark-border flex items-center justify-center p-5 sm:p-6 md:p-8">
+                                        <img src="data:image/png;base64,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" alt="Logo Universitas Amikom Yogyakarta" class="education-logo w-full h-full object-contain" loading="lazy">
+                                    </div>
+                                </div>
+                                <div class="flex-1 space-y-4 sm:space-y-6">
+                                    <div>
+                                        <span class="inline-block px-3 py-1 rounded-full bg-accent-muted text-accent text-xs font-medium tracking-wide uppercase mb-3 sm:mb-4">Sarjana</span>
+                                        <h3 class="font-display text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight mb-2">S1 Informatika</h3>
+                                        <p class="text-lg sm:text-xl text-light-muted dark:text-dark-muted">Universitas Amikom Yogyakarta</p>
+                                    </div>
+                                    <div class="flex flex-wrap items-center gap-4 sm:gap-6 text-sm text-light-muted dark:text-dark-muted">
+                                        <div class="flex items-center gap-2"><i class="ph ph-calendar text-accent"></i><span>2022 — 2026</span></div>
+                                        <div class="flex items-center gap-2"><i class="ph ph-trophy text-accent"></i><span class="font-semibold text-light-text dark:text-dark-text">IPK 3.46</span></div>
+                                    </div>
+                                    <div class="w-full h-[1px] bg-light-border dark:bg-dark-border opacity-50"></div>
+                                    <p class="body-text text-light-muted dark:text-dark-muted max-w-xl">Studi di bidang teknik komputer dengan fokus pada machine learning, computer vision, dan pengembangan perangkat lunak. Kombinasi keahlian teknis ini memperkuat kemampuan analitis dalam setiap keputusan konten dan strategi digital.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="animated-rule max-w-7xl mx-auto px-4 sm:px-6" aria-hidden="true"></div>
+        <section id="tools" class="px-4 sm:px-6 py-20 sm:py-32">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
+                    <div class="lg:col-span-4">
+                        <span class="reveal section-num font-display text-light-border dark:text-dark-border opacity-30 block">04</span>
+                        <h2 class="reveal reveal-delay-1 section-heading text-light-text dark:text-dark-text mt-3 sm:mt-4 mb-4 sm:mb-6">Alat &<br>Teknologi</h2>
+                        <p class="reveal reveal-delay-2 body-text text-light-muted dark:text-dark-muted">Setiap perangkat dipilih berdasarkan kebutuhan spesifik workflow, bukan tren semata.</p>
+                    </div>
+                    <div class="lg:col-span-8">
+                        <div class="reveal grid grid-cols-1 md:grid-cols-2 gap-12 sm:gap-16">
+                            <div>
+                                <h3 class="label-text text-light-muted dark:text-dark-muted mb-6 sm:mb-8 border-b border-light-border dark:border-dark-border pb-4">Kreatif</h3>
+                                <div class="skill-grid">
+                                    <div class="skill-item"><span class="skill-name">Adobe Premiere Pro</span><span class="skill-meta">Video</span></div>
+                                    <div class="skill-item"><span class="skill-name">After Effects</span><span class="skill-meta">Motion</span></div>
+                                    <div class="skill-item"><span class="skill-name">Photoshop</span><span class="skill-meta">Raster</span></div>
+                                    <div class="skill-item"><span class="skill-name">Illustrator</span><span class="skill-meta">Vector</span></div>
+                                    <div class="skill-item"><span class="skill-name">Lightroom</span><span class="skill-meta">Photo</span></div>
+                                    <div class="skill-item"><span class="skill-name">Figma</span><span class="skill-meta">Design</span></div>
+                                    <div class="skill-item"><span class="skill-name">CapCut</span><span class="skill-meta">Mobile</span></div>
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="label-text text-light-muted dark:text-dark-muted mb-6 sm:mb-8 border-b border-light-border dark:border-dark-border pb-4">Teknis</h3>
+                                <div class="skill-grid">
+                                    <div class="skill-item"><span class="skill-name text-accent">Python</span><span class="skill-meta">Language</span></div>
+                                    <div class="skill-item"><span class="skill-name text-accent">TensorFlow</span><span class="skill-meta">ML</span></div>
+                                    <div class="skill-item"><span class="skill-name">MobileNetV2</span><span class="skill-meta">Model</span></div>
+                                    <div class="skill-item"><span class="skill-name">Data Annotation</span><span class="skill-meta">Process</span></div>
+                                    <div class="skill-item"><span class="skill-name">Computer Vision</span><span class="skill-meta">Domain</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="animated-rule max-w-7xl mx-auto px-4 sm:px-6" aria-hidden="true"></div>
+        <section id="contact" class="min-h-screen flex items-center px-4 sm:px-6 py-20 sm:py-32">
+            <div class="max-w-7xl mx-auto w-full">
+                <span class="reveal section-num font-display text-light-border dark:text-dark-border opacity-30 block mb-2 sm:mb-4">05</span>
+                <h2 class="reveal reveal-delay-1 contact-heading text-light-text dark:text-dark-text mb-8 sm:mb-12 max-w-4xl text-balance">Mari berkolaborasi untuk membangun sesuatu yang <span class="text-accent">bermakna</span>.</h2>
+                <p class="reveal reveal-delay-2 body-large text-light-muted dark:text-dark-muted max-w-2xl mb-10 sm:mb-16 text-balance">Terbuka untuk diskusi proyek, kolaborasi kreatif, atau sekadar bertukar pikiran tentang intersection antara teknologi dan storytelling.</p>
+                <div class="reveal reveal-delay-3 flex flex-col sm:flex-row items-start gap-6 sm:gap-8">
+                    <a href="mailto:dicofr6681@gmail.com" class="contact-btn group font-display inline-flex items-center gap-3 sm:gap-4 px-6 sm:px-8 py-3 sm:py-4 bg-light-text text-light-bg dark:bg-dark-text dark:text-dark-bg rounded-full font-medium text-base sm:text-lg">
+                        <span>dicofr6681@gmail.com</span><i class="ph ph-arrow-right text-xl group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                    <div class="flex items-center gap-3 sm:gap-4">
+                        <a href="https://wa.me/+6285895878293" target="_blank" rel="noopener noreferrer" class="social-icon w-12 h-12 sm:w-14 sm:h-14 rounded-full border border-light-border dark:border-dark-border flex items-center justify-center" aria-label="WhatsApp"><i class="ph ph-whatsapp-logo text-lg sm:text-xl"></i></a>
+                        <a href="https://www.instagram.com/dicorzki/" target="_blank" rel="noopener noreferrer" class="social-icon w-12 h-12 sm:w-14 sm:h-14 rounded-full border border-light-border dark:border-dark-border flex items-center justify-center" aria-label="Instagram"><i class="ph ph-instagram-logo text-lg sm:text-xl"></i></a>
+                        <a href="https://www.linkedin.com/in/dicorzki/" target="_blank" rel="noopener noreferrer" class="social-icon w-12 h-12 sm:w-14 sm:h-14 rounded-full border border-light-border dark:border-dark-border flex items-center justify-center" aria-label="LinkedIn"><i class="ph ph-linkedin-logo text-lg sm:text-xl"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="relative z-10 border-t border-light-border dark:border-dark-border px-4 sm:px-6">
+        <div class="max-w-7xl mx-auto py-6 sm:py-8 flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-4">
+            <p class="footer-text text-light-muted dark:text-dark-muted">&copy; <span id="year" class="year-counter"></span> Dico Fathatul Rizki. Crafted with intention.</p>
+            <p class="footer-text text-light-muted dark:text-dark-muted">Yogyakarta, Indonesia</p>
+        </div>
+    </footer>
+    <script>
+        const html = document.documentElement;
+        const themeToggle = document.getElementById('theme-toggle');
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) { html.classList.add('dark'); } else { html.classList.remove('dark'); }
+        themeToggle.addEventListener('click', () => { html.classList.toggle('dark'); localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light'; });
+        document.getElementById('year').textContent = new Date().getFullYear();
+        function toggleMenu() { const menu = document.getElementById('mobile-menu'); const hamburger = document.getElementById('hamburger'); menu.classList.toggle('active'); hamburger.classList.toggle('active'); document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : ''; }
+        const glow = document.getElementById('ambient-glow');
+        let glowTicking = false;
+        if (window.innerWidth > 768) { document.addEventListener('mousemove', (e) => { if (!glowTicking) { requestAnimationFrame(() => { glow.style.left = e.clientX + 'px'; glow.style.top = e.clientY + 'px'; glowTicking = false; }); glowTicking = true; } }); }
+        const revealObserver = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); revealObserver.unobserve(entry.target); } }); }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+        document.querySelectorAll('.reveal, .reveal-scale, .line-reveal, .animated-rule').forEach(el => { revealObserver.observe(el); });
+        const progressBar = document.querySelector('.progress-bar');
+        let progressTicking = false;
+        window.addEventListener('scroll', () => { if (!progressTicking) { requestAnimationFrame(() => { const scrollTop = window.scrollY; const docHeight = document.documentElement.scrollHeight - window.innerHeight; progressBar.style.transform = `scaleX(${scrollTop / docHeight})`; progressTicking = false; }); progressTicking = true; } });
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => { anchor.addEventListener('click', function(e) { e.preventDefault(); const target = document.querySelector(this.getAttribute('href')); if (target) { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); } }); });
+        if (window.innerWidth > 768) { const cards = document.querySelectorAll('.experience-card'); let stackTicking = false; window.addEventListener('scroll', () => { if (!stackTicking) { requestAnimationFrame(() => { cards.forEach((card, index) => { const rect = card.getBoundingClientRect(); const viewportHeight = window.innerHeight; if (rect.top < viewportHeight && rect.bottom > 0) { const progress = Math.max(0, Math.min(1, 1 - (rect.top / (viewportHeight * 0.5)))); card.style.transform = `scale(${1 - progress * 0.03 * index})`; card.style.filter = `brightness(${1 - progress * 0.1 * index})`; } }); stackTicking = false; }); stackTicking = true; } }); }
+        const eduCard = document.getElementById('education-card');
+        if (eduCard && window.innerWidth > 768) { eduCard.addEventListener('mousemove', (e) => { const rect = eduCard.getBoundingClientRect(); const x = e.clientX - rect.left; const y = e.clientY - rect.top; const centerX = rect.width / 2; const centerY = rect.height / 2; eduCard.style.transform = `perspective(1000px) rotateX(${(y - centerY) / 20}deg) rotateY(${(centerX - x) / 20}deg)`; }); eduCard.addEventListener('mouseleave', () => { eduCard.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)'; }); }
+        setTimeout(() => { document.querySelectorAll('.line-reveal').forEach((el, i) => { setTimeout(() => el.classList.add('visible'), i * 150); }); }, 300);
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { document.querySelectorAll('.reveal, .reveal-scale, .line-reveal, .animated-rule').forEach(el => { el.classList.add('visible'); }); }
+    </script>
+</body>
+</html>
