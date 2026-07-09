@@ -1,0 +1,83 @@
+User-agent: *
+Allow: /
+Disallow: /private/
+Disallow: /admin/
+Disallow: /temp/
+
+# ── Anthropic / Claude (Active crawlers as of 2026) ──
+User-agent: ClaudeBot
+Allow: /
+User-agent: Claude-User
+Allow: /
+User-agent: Claude-SearchBot
+Allow: /
+
+# ── OpenAI (Active crawlers as of 2026) ──
+User-agent: GPTBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+
+# ── Perplexity ──
+User-agent: PerplexityBot
+Allow: /
+User-agent: Perplexity-User
+Allow: /
+
+# ── Google AI ──
+User-agent: Google-Extended
+Allow: /
+
+# ── Apple ──
+User-agent: Applebot
+Allow: /
+User-agent: Applebot-Extended
+Allow: /
+
+# ── Meta / Facebook ──
+User-agent: FacebookBot
+Allow: /
+User-agent: meta-externalagent
+Allow: /
+
+# ── Amazon ──
+User-agent: Amazonbot
+Allow: /
+
+# ── Microsoft Bing ──
+User-agent: BingPreview
+Allow: /
+
+# ── DuckDuckGo ──
+User-agent: DuckDuckBot
+Allow: /
+
+# ── Brave ──
+User-agent: BraveBot
+Allow: /
+
+# ── Mistral AI ──
+User-agent: MistralAI
+Allow: /
+User-agent: MistralAI-User
+Allow: /
+
+# ── DeepSeek ──
+User-agent: DeepSeekBot
+Allow: /
+
+# ── xAI / Grok ──
+User-agent: xAI-Grok
+Allow: /
+
+# ── Cohere (legacy compatibility) ──
+User-agent: cohere-ai
+Allow: /
+
+# ── Common Crawl ──
+User-agent: CCBot
+Allow: /
+
+Sitemap: https://dicorzki.com/sitemap.xml
