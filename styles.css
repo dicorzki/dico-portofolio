@@ -554,3 +554,26 @@ body{overflow-x:hidden;background-color:#FAFAF8;color:#1C1917;font-family:'Inter
 /* ── Prevent FOUC for dark mode ── */
 html.dark body{background-color:#030303;color:#F5F5F0}
 html:not(.dark) body{background-color:#FAFAF8;color:#1C1917}
+
+/* ── Header Background with Opacity ── */
+.bg-white\/85{background-color:rgba(255,255,255,.85)}
+.dark .bg-\[\#0A0A0A\]\/85{background-color:rgba(10,10,10,.85)}
+
+/* ── Ensure dark mode text colors are explicit ── */
+.dark .text-\[\#F5F5F0\]{color:#F5F5F0!important}
+.dark .text-\[\#6B6B6B\]{color:#6B6B6B!important}
+.dark .text-\[\#C27B3C\]{color:#C27B3C!important}
+.dark .text-\[\#D4A373\]{color:#D4A373!important}
+
+/* ── Ensure light mode text colors are explicit ── */
+.text-\[\#1C1917\]{color:#1C1917!important}
+.text-\[\#78716C\]{color:#78716C!important}
+.text-\[\#C27B3C\]{color:#C27B3C!important}
+
+/* ── Mobile nav link styling ── */
+.mobile-nav-link{color:#1C1917}
+.dark .mobile-nav-link{color:#F5F5F0}
+
+/* ── Social icon text color fix ── */
+.social-icon{color:#1C1917}
+.dark .social-icon{color:#F5F5F0}
