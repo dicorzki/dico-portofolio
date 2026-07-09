@@ -537,3 +537,20 @@ body{overflow-x:hidden;background-color:#FAFAF8;color:#1C1917;font-family:'Inter
 .nav-logo{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:-0.02em}
 .footer-text{font-family:'Space Grotesk',sans-serif;font-size:.75rem;letter-spacing:.04em}
 .year-counter{font-family:'Space Grotesk',sans-serif;font-variant-numeric:tabular-nums}
+
+/* ── Explicit Header Nav Colors ── */
+#main-nav a{color:#1C1917}
+.dark #main-nav a{color:#F5F5F0}
+#main-nav .nav-logo{color:#1C1917}
+.dark #main-nav .nav-logo{color:#F5F5F0}
+
+/* ── Explicit Card Title Colors ── */
+.card-title{color:#1C1917}
+.dark .card-title{color:#F5F5F0}
+
+/* ── Explicit text colors for elements without them ── */
+.text-inherit{color:inherit}
+
+/* ── Prevent FOUC for dark mode ── */
+html.dark body{background-color:#030303;color:#F5F5F0}
+html:not(.dark) body{background-color:#FAFAF8;color:#1C1917}
